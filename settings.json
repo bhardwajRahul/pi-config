@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.61.1",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
-  "defaultThinkingLevel": "minimal",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
+  "defaultThinkingLevel": "medium",
   "packages": [
     "git:github.com/nicobailon/pi-mcp-adapter",
     {
@@ -19,11 +19,9 @@
     },
     "git:github.com/pasky/chrome-cdp-skill",
     "git:github.com/HazAT/glimpse",
-    "git:github.com/HazAT/pi-interactive-subagents",
     "git:github.com/HazAT/pi-autoresearch",
     "npm:pi-per-model-prompt",
     "npm:@jordyvd/pi-openai-compaction",
-    "npm:pi-timer",
     "npm:@arpagon/pi-web-providers",
     "npm:@hyperprior/pi-ask",
     "npm:@hyperprior/pi-ssh",
@@ -41,7 +39,9 @@
       ]
     },
     "npm:pi-cmux",
-    "git:github.com/umgbhalla/pi-megaplan"
+    "git:github.com/picassio/pi-ghostty-web",
+    "../../hub/zonko/pi-gigaplan",
+    "git:github.com/umgbhalla/pi-interactive-subagents"
   ],
   "hideThinkingBlock": false,
   "extensions": [
@@ -56,8 +56,7 @@
     "extensions/pi-mono/files.ts",
     "extensions/pi-mono/prompt-url-widget.ts",
     "extensions/pi-mono/redraws.ts",
-    "extensions/pi-mono/tps.ts",
-    "extensions/idle-nudge/index.ts"
+    "extensions/pi-mono/tps.ts"
   ],
   "images": {
     "blockImages": false

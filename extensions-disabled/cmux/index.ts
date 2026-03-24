@@ -50,6 +50,7 @@ function shortModel(id: string): string {
 export default function (pi: ExtensionAPI) {
   if (!CMUX_SOCKET) return;
 
+  const isSubagentSession = !!(process.env.PI_SUBAGENT_NAME || process.env.PI_SUBAGENT_AGENT);
   let sessionCost = 0;
   let hasUI = false;
 
@@ -137,10 +138,12 @@ export default function (pi: ExtensionAPI) {
       setStatus("pi_cost", formatCost(sessionCost), "dollarsign.circle", GREEN);
     }
 
-    // Notify user that agent needs attention — use empty body so it
-    // triggers the blue ring and tab highlight without leaving persistent
-    // text in the sidebar.
-    run("notify", "--title", "Needs attention");
+    // Main sessions can raise a workspace notification when they go idle.
+    // Subagents run in background splits and should not light up the parent
+    // workspace just because they finished a turn.
+    if (!isSubagentSession) {
+      run("notify", "--title", "Needs attention");
+    }
   });
 
   // --- Turn tracking (tokens + cost) ---

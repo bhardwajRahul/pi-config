@@ -2,13 +2,10 @@
  * Idle Nudge — Detects when an autonomous subagent goes idle without
  * writing an artifact, and nudges it to wrap up after 10 seconds.
  *
- * The problem: subagents sometimes finish their work (produce text output,
- * no more tool calls) but forget to call write_artifact, which is what
- * signals completion. This extension watches for idle state and sends a
- * follow-up message prompting the agent to write its artifact and finish.
- *
- * Only activates for non-interactive (autonomous) sessions — never nudges
- * when a human is present.
+ * The problem: autonomous subagents run in visible cmux panes, so they still
+ * have a UI. Detecting autonomy via `ctx.hasUI` is wrong. Instead, the parent
+ * subagent spawner passes PI_SUBAGENT_INTERACTIVE=0|1 and this extension only
+ * activates for subagent sessions explicitly marked interactive=0.
  */
 
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
@@ -18,7 +15,7 @@ const IDLE_NUDGE_DELAY_MS = 10_000; // 10 seconds
 export default function (pi: ExtensionAPI) {
   let idleTimer: ReturnType<typeof setTimeout> | null = null;
   let hasWrittenArtifact = false;
-  let isAutonomous = false;
+  let isAutonomousSubagent = false;
   let sessionCtx: any = null;
   let nudgeCount = 0;
   const MAX_NUDGES = 2;
@@ -34,7 +31,7 @@ export default function (pi: ExtensionAPI) {
     clearIdleTimer();
 
     // Don't nudge interactive sessions or if artifact already written
-    if (!isAutonomous || hasWrittenArtifact || nudgeCount >= MAX_NUDGES) return;
+    if (!isAutonomousSubagent || hasWrittenArtifact || nudgeCount >= MAX_NUDGES) return;
     if (!sessionCtx) return;
 
     idleTimer = setTimeout(() => {
@@ -53,10 +50,11 @@ export default function (pi: ExtensionAPI) {
     }, IDLE_NUDGE_DELAY_MS);
   }
 
-  // Detect autonomous mode: no UI = non-interactive subagent
+  // Detect autonomous subagents via env vars set by the parent spawner.
   pi.on("session_start", async (_event, ctx) => {
     sessionCtx = ctx;
-    isAutonomous = !ctx.hasUI;
+    const isSubagent = !!(process.env.PI_SUBAGENT_NAME || process.env.PI_SUBAGENT_AGENT);
+    isAutonomousSubagent = isSubagent && process.env.PI_SUBAGENT_INTERACTIVE === "0";
     hasWrittenArtifact = false;
     nudgeCount = 0;
     clearIdleTimer();

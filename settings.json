@@ -1,8 +1,8 @@
 {
   "lastChangelogVersion": "0.63.1",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.4",
-  "defaultThinkingLevel": "medium",
+  "defaultModel": "gpt-5.3-codex",
+  "defaultThinkingLevel": "high",
   "packages": [
     "git:github.com/nicobailon/pi-mcp-adapter",
     {

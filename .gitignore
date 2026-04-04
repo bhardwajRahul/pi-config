@@ -27,4 +27,12 @@ mcp.json
 .DS_Store
 Thumbs.db
 tmp/
-usage-tracker-history.json
+usage-tracker-*.json
+
+# Runtime-generated state (ant colony, session bridge, gigaplan runs, scheduler)
+ant-colony/
+runtime/
+cache/
+.gigaplan/plans/
+scheduler/
+

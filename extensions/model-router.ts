@@ -196,7 +196,7 @@ function detectRoute(prompt: string): { route: RouteKey; confidence: "high" | "m
 
 export default function modelRouterExtension(pi: ExtensionAPI) {
 	const state: RouterState = {
-		autoRoutingEnabled: true,
+		autoRoutingEnabled: false,
 	};
 
 	async function trySwitchModel(

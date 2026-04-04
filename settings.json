@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.64.0",
+  "lastChangelogVersion": "0.65.0",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
-  "defaultThinkingLevel": "high",
+  "defaultModel": "claude-sonnet-4-6",
+  "defaultThinkingLevel": "medium",
   "packages": [
     "git:github.com/nicobailon/pi-mcp-adapter",
     {
@@ -22,35 +22,36 @@
     "git:github.com/HazAT/pi-autoresearch",
     "npm:pi-per-model-prompt",
     "npm:@arpagon/pi-web-providers",
-    "npm:@hyperprior/pi-ask",
     "npm:@hyperprior/pi-ssh",
     "npm:pi-ghostty",
-    {
-      "source": "npm:@ifi/oh-pi-extensions",
-      "extensions": [
-        "-extensions/bg-process.ts"
-      ]
-    },
-    {
-      "source": "npm:oh-pi",
-      "extensions": [
-        "-extensions/safe-guard.ts",
-        "-pi-package/extensions/bg-process.ts"
-      ],
-      "prompts": [
-        "-pi-package/prompts/review.md"
-      ]
-    },
     "npm:pi-cmux",
     "git:github.com/picassio/pi-ghostty-web",
     "../../hub/zonko/pi-gigaplan",
     "../../hub/pi-interactive-subagents",
-    "npm:pi-teams",
-    "npm:@codexstar/pi-listen",
     "git:github.com/umgbhalla/pi-openai-compaction",
-    "npm:pi-tool-display",
+    {
+      "source": "npm:pi-tool-display",
+      "extensions": []
+    },
     "npm:pi-context",
-    "npm:pi-updater"
+    "npm:pi-updater",
+    {
+      "source": "npm:oh-pi",
+      "extensions": [],
+      "skills": [],
+      "prompts": [],
+      "themes": []
+    },
+    "npm:@ifi/oh-pi-ant-colony",
+    "npm:@ifi/pi-extension-subagents",
+    "npm:@ifi/pi-spec",
+    "npm:@ifi/oh-pi-themes",
+    "npm:@ifi/oh-pi-skills",
+    "npm:@ifi/pi-web-remote",
+    "git:https://github.com/baggiiiie/pi-stuff",
+    "npm:pi-kimi-coder",
+    "npm:glimpseui",
+    "npm:@marckrenn/pi-sub-bar"
   ],
   "hideThinkingBlock": false,
   "extensions": [
@@ -65,7 +66,9 @@
     "extensions/pi-mono/files.ts",
     "extensions/pi-mono/prompt-url-widget.ts",
     "extensions/pi-mono/redraws.ts",
-    "extensions/pi-mono/tps.ts"
+    "extensions/pi-mono/tps.ts",
+    "-extensions/session-bridge/index.ts",
+    "-extensions/dangerous-command-notify.ts"
   ],
   "images": {
     "blockImages": false

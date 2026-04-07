@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.65.0",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-sonnet-4-6",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.65.2",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.3-codex",
+  "defaultThinkingLevel": "low",
   "packages": [
     "git:github.com/nicobailon/pi-mcp-adapter",
     {
@@ -25,41 +25,27 @@
     "npm:@hyperprior/pi-ssh",
     "npm:pi-ghostty",
     "npm:pi-cmux",
-    "git:github.com/picassio/pi-ghostty-web",
     "../../hub/zonko/pi-gigaplan",
     "../../hub/pi-interactive-subagents",
     "git:github.com/umgbhalla/pi-openai-compaction",
-    {
-      "source": "npm:pi-tool-display",
-      "extensions": []
-    },
     "npm:pi-context",
     "npm:pi-updater",
-    {
-      "source": "npm:oh-pi",
-      "extensions": [],
-      "skills": [],
-      "prompts": [],
-      "themes": []
-    },
-    "npm:@ifi/oh-pi-ant-colony",
-    "npm:@ifi/pi-extension-subagents",
     "npm:@ifi/pi-spec",
     "npm:@ifi/oh-pi-themes",
     "npm:@ifi/oh-pi-skills",
     "npm:@ifi/pi-web-remote",
     "git:https://github.com/baggiiiie/pi-stuff",
     "npm:pi-kimi-coder",
-    "npm:glimpseui",
-    "npm:@marckrenn/pi-sub-bar"
+    "npm:@marckrenn/pi-sub-bar",
+    "npm:@ogulcancelik/pi-session-recall",
+    "npm:@sherif-fanous/pi-rtk",
+    "npm:pi-repl",
+    "npm:pi-pai"
   ],
   "hideThinkingBlock": false,
   "extensions": [
     "extensions/restart/index.ts",
-    "extensions/answer/index.ts",
-    "extensions/claude-tool/index.ts",
     "extensions/cost/index.ts",
-    "extensions/execute-command/index.ts",
     "extensions/todos/index.ts",
     "extensions/watchdog/index.ts",
     "extensions/pi-mono/diff.ts",
@@ -77,6 +63,14 @@
   "steeringMode": "all",
   "followUpMode": "all",
   "treeFilterMode": "default",
+  "enabledModels": [
+    "claude-opus-*",
+    "claude-sonnet-*",
+    "gpt-5.3-codex",
+    "gpt-5.3-codex-spark",
+    "gpt-5.4",
+    "gpt-5.4-mini"
+  ],
   "theme": "oh-p-dark",
   "voice": {
     "version": 2,

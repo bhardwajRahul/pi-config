@@ -1,10 +1,10 @@
 {
-  "lastChangelogVersion": "0.67.1",
+  "lastChangelogVersion": "0.67.68",
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
+  "defaultModel": "claude-sonnet-4-6",
   "defaultThinkingLevel": "high",
   "packages": [
-    "git:github.com/nicobailon/pi-mcp-adapter",
+    "-git:github.com/nicobailon/pi-mcp-adapter",
     "git:github.com/pasky/chrome-cdp-skill",
     "git:github.com/HazAT/glimpse",
     "git:github.com/HazAT/pi-autoresearch",
@@ -14,7 +14,7 @@
     "npm:pi-cmux",
     "../../hub/pi-interactive-subagents",
     "git:github.com/umgbhalla/pi-openai-compaction",
-    "npm:pi-context",
+    "-npm:pi-context",
     "npm:pi-updater",
     "npm:@ifi/pi-spec",
     "npm:@ifi/oh-pi-themes",
@@ -22,9 +22,9 @@
     "npm:@ifi/pi-web-remote",
     "git:https://github.com/baggiiiie/pi-stuff",
     "npm:@marckrenn/pi-sub-bar",
-    "npm:@ogulcancelik/pi-session-recall",
+    "-npm:@ogulcancelik/pi-session-recall",
     "npm:@sherif-fanous/pi-rtk",
-    "npm:pi-repl",
+    "-npm:pi-repl",
     {
       "source": "npm:pi-pai",
       "extensions": [
@@ -35,7 +35,9 @@
     "git:github.com/umgbhalla/pi-sentry",
     "npm:@the-forge-flow/fff-pi",
     "npm:@heyhuynhgiabuu/pi-diff",
-    "git:github.com/supabitapp/supaterm-skills"
+    "git:github.com/supabitapp/supaterm-skills",
+    "../../hub/pi-per-model-prompt",
+    "npm:pi-system-reminders"
   ],
   "hideThinkingBlock": false,
   "extensions": [
@@ -43,6 +45,7 @@
     "extensions/cost/index.ts",
     "extensions/todos/index.ts",
     "extensions/watchdog/index.ts",
+    "extensions/slim-skills.ts",
     "-extensions/claude-tool/index.ts",
     "-extensions/execute-command/index.ts",
     "extensions/pi-mono/diff.ts",
@@ -61,7 +64,7 @@
   "followUpMode": "all",
   "treeFilterMode": "user-only",
   "enabledModels": [
-    "claude-opus-4*",
+    "claude-opus-4-*",
     "claude-sonnet-4-*",
     "claude-haiku-4-*",
     "gpt-5.3-codex",

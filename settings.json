@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.68.0",
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-7",
+  "lastChangelogVersion": "0.70.2",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
   "defaultThinkingLevel": "high",
   "packages": [
     "-git:github.com/nicobailon/pi-mcp-adapter",
@@ -26,7 +26,9 @@
     "-npm:pi-repl",
     {
       "source": "npm:pi-pai",
-      "extensions": ["-src/extension.ts"]
+      "extensions": [
+        "-src/extension.ts"
+      ]
     },
     "npm:pi-exa-search",
     "git:github.com/umgbhalla/pi-sentry",
@@ -60,15 +62,6 @@
   "steeringMode": "all",
   "followUpMode": "all",
   "treeFilterMode": "user-only",
-  "enabledModels": [
-    "claude-opus-4-*",
-    "claude-sonnet-4-*",
-    "claude-haiku-4-*",
-    "gpt-5.3-codex",
-    "gpt-5.3-codex-spark",
-    "gpt-5.4",
-    "gpt-5.4-mini"
-  ],
   "theme": "oh-p-dark",
   "voice": {
     "version": 2,

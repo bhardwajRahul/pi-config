@@ -14,7 +14,11 @@ export default function (pi: ExtensionAPI) {
 
 	return {
 		on: "tool_execution_end",
-		when: () => consecutiveFailures >= 3,
+		when: () => {
+			if (consecutiveFailures < 3) return false;
+			consecutiveFailures = 0;
+			return true;
+		},
 		message: "3 consecutive bash failures. Stop, re-read the error messages, and rethink your approach.",
 		cooldown: 10,
 	};

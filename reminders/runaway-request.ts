@@ -12,7 +12,7 @@
  */
 import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 
-const THRESHOLD_MS = 120_000;
+const THRESHOLD_MS = 620_000;
 
 export default function (pi: ExtensionAPI) {
 	let turnStart = 0;

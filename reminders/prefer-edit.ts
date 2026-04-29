@@ -12,7 +12,11 @@ export default function (pi: ExtensionAPI) {
 
 	return {
 		on: "tool_execution_end",
-		when: () => writeCount >= 50,
+		when: () => {
+			if (writeCount < 50) return false;
+			writeCount = 0;
+			return true;
+		},
 		message: "You've used write 50+ times. Prefer edit for surgical changes to existing files.",
 		cooldown: 5,
 	};

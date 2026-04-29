@@ -15,6 +15,7 @@ export default function (pi: ExtensionAPI) {
 	});
 
 	pi.on("agent_end", (event, ctx) => {
+		try {
 		if (!ctx.hasUI) return;
 		if (agentStartMs === null) return;
 
@@ -43,5 +44,8 @@ export default function (pi: ExtensionAPI) {
 		const tokensPerSecond = output / elapsedSeconds;
 		const message = `TPS ${tokensPerSecond.toFixed(1)} tok/s. out ${output.toLocaleString()}, in ${input.toLocaleString()}, cache r/w ${cacheRead.toLocaleString()}/${cacheWrite.toLocaleString()}, total ${totalTokens.toLocaleString()}, ${elapsedSeconds.toFixed(1)}s`;
 		ctx.ui.notify(message, "info");
+		} catch {
+			// Ignore stale UI during reload/shutdown.
+		}
 	});
 }

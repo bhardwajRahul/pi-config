@@ -26,7 +26,7 @@ const THINKING_LEVELS = ["off", "minimal", "low", "medium", "high", "xhigh"] as 
 const DEFAULT_ROUTES: Record<RouteKey, RouteTarget> = {
 	hard_reasoning: {
 		provider: "openai-codex",
-		modelId: "gpt-5.4",
+		modelId: "gpt-5.5",
 		thinkingLevel: "high",
 		reason: "Best for hardest reasoning, deep debugging, architecture, and long multi-step coding tasks.",
 	},
@@ -62,7 +62,8 @@ const ROUTE_EXAMPLES: Record<RouteKey, string> = {
 };
 
 const MODEL_NOTES = [
-	"GPT-5.4: strongest for difficult reasoning-heavy coding.",
+	"GPT-5.5: current top-tier OpenAI model — strongest for difficult reasoning-heavy coding and long multi-step tasks.",
+	"GPT-5.4: previous flagship; strong reasoning-heavy coding when 5.5 is unavailable.",
 	"GPT-5.4-mini: faster/cheaper while keeping strong coding quality for smaller tasks.",
 	"GPT-5.3-Codex-Spark: best for near-instant coding iteration (text-only, 128k context).",
 	"Claude Opus 4.6: top-end quality for deep coding, design direction, and long-context tasks.",
@@ -528,7 +529,7 @@ export default function modelRouterExtension(pi: ExtensionAPI) {
 		],
 		parameters: Type.Object({
 			provider: Type.String({ description: "Model provider, e.g. anthropic or openai-codex" }),
-			modelId: Type.String({ description: "Exact model id, e.g. claude-opus-4-6 or gpt-5.4" }),
+			modelId: Type.String({ description: "Exact model id, e.g. claude-opus-4-6 or gpt-5.5" }),
 			thinkingLevel: Type.Optional(
 				StringEnum(THINKING_LEVELS, {
 					description: "Optional thinking level to apply after switching",

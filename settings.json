@@ -1,14 +1,13 @@
 {
-  "lastChangelogVersion": "0.70.2",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.4",
+  "lastChangelogVersion": "0.70.5",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-7",
   "defaultThinkingLevel": "high",
   "packages": [
     "-git:github.com/nicobailon/pi-mcp-adapter",
     "git:github.com/pasky/chrome-cdp-skill",
     "git:github.com/HazAT/glimpse",
     "git:github.com/HazAT/pi-autoresearch",
-    "npm:@arpagon/pi-web-providers",
     "npm:@hyperprior/pi-ssh",
     "npm:pi-ghostty",
     "npm:pi-cmux",
@@ -36,7 +35,13 @@
     "npm:@heyhuynhgiabuu/pi-diff",
     "git:github.com/supabitapp/supaterm-skills",
     "../../hub/pi-per-model-prompt",
-    "npm:pi-system-reminders"
+    "npm:pi-system-reminders",
+    "npm:pi-parallel-web-search",
+    "git:github.com/travisp/pi-async-visual-editor",
+    "npm:@alexanderfortin/pi-loaded-tools",
+    "git:github.com/travisp/pi-fuck",
+    "git:github.com/jo-inc/pi-mem",
+    "npm:@robzolkos/pi-nocchio"
   ],
   "hideThinkingBlock": false,
   "extensions": [
@@ -61,8 +66,8 @@
   "showHardwareCursor": true,
   "steeringMode": "all",
   "followUpMode": "all",
-  "treeFilterMode": "user-only",
-  "theme": "oh-p-dark",
+  "treeFilterMode": "all",
+  "theme": "tokyo-night",
   "voice": {
     "version": 2,
     "enabled": true,

@@ -32,11 +32,22 @@ export default function (pi: ExtensionAPI) {
 	};
 	const defaultThreshold = 30;
 
+	let firedTool = "";
+	let firedStreak = 0;
+
 	return {
 		on: "tool_execution_end",
-		when: () => streak >= (thresholds[lastTool] ?? defaultThreshold),
+		when: () => {
+			if (streak >= (thresholds[lastTool] ?? defaultThreshold)) {
+				firedTool = lastTool;
+				firedStreak = streak;
+				streak = 0;
+				return true;
+			}
+			return false;
+		},
 		message: () =>
-			`You have called '${lastTool}' ${streak} times in a row. This is the single strongest signal you are stuck in a tool-thrashing loop. Before calling '${lastTool}' again: (1) summarize in one sentence what you have learned from the prior calls, (2) batch the next 3–5 calls into a single invocation if they are independent, OR (3) switch tools, OR (4) state the next distinct step and stop calling '${lastTool}' until you have.`,
+			`You have called '${firedTool}' ${firedStreak} times in a row. This is the single strongest signal you are stuck in a tool-thrashing loop. Before calling '${firedTool}' again: (1) summarize in one sentence what you have learned from the prior calls, (2) batch the next 3–5 calls into a single invocation if they are independent, OR (3) switch tools, OR (4) state the next distinct step and stop calling '${firedTool}' until you have.`,
 		cooldown: 5,
 	};
 }

@@ -23,11 +23,18 @@ export default function (pi: ExtensionAPI) {
 		}
 	});
 
+	let firedPolls = 0;
+
 	return {
 		on: "tool_execution_end",
-		when: () => chainedPolls >= 2,
+		when: () => {
+			if (chainedPolls < 2) return false;
+			firedPolls = chainedPolls;
+			chainedPolls = 0;
+			return true;
+		},
 		message: () =>
-			`You have called active_subagents ${chainedPolls} times in a row with no intervening work. Polling is not productive. While subagents run, do one of: (1) continue with an independent task you can finish in parallel, (2) if everything is blocked on the subagents, wait for their completion event rather than chaining polls, (3) if polls are the right answer for genuinely-gated coordination, space them out with at least one unit of useful work between checks. Do not poll as filler.`,
+			`You have called active_subagents ${firedPolls} times in a row with no intervening work. Polling is not productive. While subagents run, do one of: (1) continue with an independent task you can finish in parallel, (2) if everything is blocked on the subagents, wait for their completion event rather than chaining polls, (3) if polls are the right answer for genuinely-gated coordination, space them out with at least one unit of useful work between checks. Do not poll as filler.`,
 		cooldown: 5,
 	};
 }
